@@ -15,7 +15,7 @@ def get_notes_id(notes_id):
     try:
         note=Notes.query.get(notes_id) 
         return note 
-    excep sqlalchemy_error as e:
+    except sqlalchemy_error as e:
     print(f"the passed note id is not found:{e}") 
 def update_note(notes_id,**kwargs):
     try:
