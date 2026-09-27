@@ -1,22 +1,31 @@
-from SQLAlchemyError import sqlalchemy_error  
-from models import Notes 
+from extensions import db
+from models import Notes
 
-
-
-def create_note(title,content,created_at,updated_at):   
-    new_note=Notes(title=title,content=content,createed_at=created_at,updated_at=updated_at) 
-    try:
-        new_note.commit()
-        return new_note 
-    except sqlalchemy_error as e:
-        print(f"Error creating note:{e}")     
+def create_note(title, content, user_id):
+    new_note = Notes(title=title, content=content, user_id=user_id)
+    db.session.add(new_note)
+    db.session.commit()
+    return new_note
 
 def get_notes_id(notes_id):
-    try:
-        note=Notes.query.get(notes_id) 
-        return note 
-    except sqlalchemy_error as e:
-    print(f"the passed note id is not found:{e}") 
-def update_note(notes_id,**kwargs):
-    try:
-        
+    return Notes.query.get(notes_id)
+
+def get_all_notes():
+    return Notes.query.all()
+
+def update_note(notes_id, **kwargs):
+    note = Notes.query.get(notes_id)
+    if not note:
+        raise ValueError("Note not found")
+    for key, value in kwargs.items():
+        setattr(note, key, value)
+    db.session.commit()
+    return note
+
+def delete_note(notes_id):
+    note = Notes.query.get(notes_id)
+    if not note:
+        raise ValueError("Note not found")
+    db.session.delete(note)
+    db.session.commit()
+    return note
