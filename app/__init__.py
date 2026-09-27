@@ -1,6 +1,7 @@
 from extension import db,migrate,jwt,cors,bcrypt 
 from flask import Flask  
-from config import Config
+from config import Config 
+from app.routes import note_bp 
 
 
 def creat_app():
@@ -10,7 +11,8 @@ def creat_app():
     migrate.init_app(app)  
     jwt.init_app(app) 
     cors.init_app(app) 
-    bcrypt.init_app(app)
+    bcrypt.init_app(app) 
+    app.register_blueprint(note_bp) 
 
     return app 
  
