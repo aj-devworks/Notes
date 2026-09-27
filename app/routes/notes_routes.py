@@ -25,4 +25,18 @@ def get_note(note_id):
         else:
             return jsonify({"error": "Note not found"}), 404 
     except Exception as e:
-        return jsonify({"error": str(e)}), 400
+        return jsonify({"error": str(e)}), 400  
+@note_bp.route("/notes",methods=['GET'])
+def get_notes_all(): 
+    try:
+        notes = get_note_service()  
+        return jsonify([{"id":note.id,"title":note.title,"content":note.content,"user_id":note.user_id},200])) 
+    except ValueError as e:
+        return jsonify({"error":str{e}}),400    
+@note_bp.route("/notes/<int:note_id>",methods=['DELETE']) 
+def delete_note(note_id):  
+    try:
+        notes= delete_note_service(note_id) 
+        return jsonify({'message":"note successfully deleted"}),200 
+    except ValueError as e:
+        return jsonify({"error":str(e)}),400 
