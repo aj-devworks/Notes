@@ -30,7 +30,7 @@ def get_note(note_id):
 def get_notes_all(): 
     try:
         notes = get_note_service()  
-        return jsonify([{"id":note.id,"title":note.title,"content":note.content,"user_id":note.user_id},200])) 
+        return jsonify([{"id":note.id,"title":note.title,"content":note.content,"user_id":note.user_id}]), 200  
     except ValueError as e:
         return jsonify({"error":str{e}}),400    
 @note_bp.route("/notes/<int:note_id>",methods=['DELETE']) 

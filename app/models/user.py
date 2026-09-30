@@ -8,6 +8,7 @@ from sqlalchemy.orm import Mapped,mapped_column
 class User(db.Model):
     id:Mapped[int]=mapped_column(primary_key=True)
     user_name:Mapped[str]=mapped_column(nullable=False,unique=True) 
+    email:Mapped[str]=mapped_column(unique=True,nullable=False)
     password_hash:Mapped[str]=mapped_column(nullable=False) 
 
 
@@ -19,4 +20,4 @@ class User(db.Model):
         self.password_hash=generate_password_hash(password) 
 
     def check_password(self,password):
-        return check_password_hash(self.password_hash,password) 
+        return check_password_hash(self.password_hash,password)  
