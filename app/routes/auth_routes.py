@@ -1,5 +1,5 @@
 from flask import Blueprint,jsonify,request 
-from app.services.auth_service import create_user_service,get_user_service_email 
+from app.services.auth_service import sign_up_service,login_service 
 
 
 user_auth =Blueprint('user_bp',__name__) 
@@ -14,7 +14,7 @@ def create_user_routes():
     password=data.get('password') 
 
    try:
-    user = create_user_service(user_name,email,password)  
+    user = sign_up_service(user_name,email,password)  
    except ValueError as e:
     return jsonify({"message":str(e)}),400
    return jsonify({
