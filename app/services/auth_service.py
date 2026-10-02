@@ -20,7 +20,7 @@ def login_service(password,email):
         raise ValueError("invalid email or password")  
 
     token = create_access_token(identity=user.id) 
-    return ('token':token,'user_id':user.id ,'user_name':user.user_name)  
+    return ({'token':token,'user_id':user.id ,'user_name':user.user_name})  
 
 
 
