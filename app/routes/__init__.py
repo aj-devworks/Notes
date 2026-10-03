@@ -1,1 +1,0 @@
-from app.routes.notes_routes import note_bp 

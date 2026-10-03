@@ -13,10 +13,6 @@ def creat_app():
     jwt.init_app(app) 
     cors.init_app(app) 
     bcrypt.init_app(app) 
-    app.register_blueprint(note_bp) 
-    app.register_blueprint(user_auth) 
-
-
     return app 
  
 
