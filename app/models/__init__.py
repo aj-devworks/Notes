@@ -1,4 +1,3 @@
-from .user import User 
-from .notes import Notes 
+from app.models.notes import Notes 
 
 

@@ -1,4 +1,4 @@
-from app.models import NOtes 
+from app.models import Notes
 
 
 
