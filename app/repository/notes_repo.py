@@ -1,4 +1,5 @@
-from app.model import Notes  
+from app.model import Notes   
+from extensions import db
 
 
 
