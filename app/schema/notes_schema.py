@@ -1,15 +1,19 @@
-from marshmallow import schema,fields,validate 
-
-
-class NotesSchema(schema):
-    id = fields.int(dump=True) 
-    title=fields.str(required=True,validate=validate.Length(min=1,max=100)) 
-    content = fields.str(required=True,validate=validate.Length(min=1,max=250)) 
-    user_id=fields.int(dump_only=True) 
+from marshmallow import validate,fields,Schema  
 
 
 
 
 
-note=NotesSchema()
-notes=NotesSchema(many=True)  
+
+class NotesSchema(Schema):
+    id =fields.Int (dump_only=True) 
+    title=fields.Str(required=True,validate=validate.length(min=1,max=100))
+    content=fields.Str(required=True,validate=validate.length(min=1,max=100))
+    user_id =fields.Int (dump_only=True) 
+
+
+
+note_schema = NotesSchema() 
+notes_list_schema = NotesSchema(many=True)
+
+
